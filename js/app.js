@@ -117,9 +117,20 @@ function llenarSelect(){
 //Funcion que filtra en base a la búsqueda 
 function filtrarAuto(){
     const resultado = autos.filter(filtrarMarca).filter(filtrarYear).filter(filtrarMinimo).filter(filtrarMaximo).filter(filtrarPuertas).filter(filtrarTransmicion).filter(filtrarColor);
-   // console.log(resultado);
+   
+   if(resultado.length){
+        mostrarAutos(resultado);
+   }else{
+        noResultado();
+   }
+}
 
-   mostrarAutos(resultado);
+function noResultado(){
+    limpiarHTML();
+    const noResultado = document.createElement('div');
+    noResultado.classList.add('alerta', 'error');
+    noResultado.textContent = 'No Hay Resultados, Intenta con otros términos de búsqueda';
+    resultado.appendChild(noResultado);
 }
 
 function filtrarMarca(auto){
