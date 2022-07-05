@@ -1,4 +1,4 @@
-//Varables 
+//Variables 
 const marca = document.querySelector('#marca');
 const year = document.querySelector('#year');
 const minimo = document.querySelector('#minimo');
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded',() =>{
 marca.addEventListener('change', (e) =>{
     datosBusqueda.marca = e.target.value;
 
-   
+   filtrarAuto();
 });
 
 year.addEventListener('change', (e) =>{
@@ -101,4 +101,18 @@ function llenarSelect(){
         opcion.textContent= i;
         year.appendChild(opcion); // agrega la opciones de año al select 
     }
+}
+
+//Funcion que filtra en base a la búsqueda 
+function filtrarAuto(){
+    const resultado = autos.filter(filtrarMarca);
+    console.log(resultado);
+}
+
+function filtrarMarca(auto){
+    const {marca} = datosBusqueda;
+    if(marca){
+        return auto.marca === marca; 
+    }
+    return auto;
 }
